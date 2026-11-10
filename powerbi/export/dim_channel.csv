@@ -1,0 +1,6 @@
+channel,channel_type,market
+store_geneve,Store,CH
+store_lausanne,Store,CH
+store_zurich,Store,CH
+web_ch,Web,CH
+web_eu,Web,EU

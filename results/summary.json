@@ -1,0 +1,487 @@
+{
+  "days": 30,
+  "runtime_s": 113.8,
+  "bronze_rows": 10968,
+  "silver_rows": 10643,
+  "quarantined_rows": 159,
+  "quality": {
+    "duplicates": {
+      "injected": 166,
+      "removed": 166
+    },
+    "missing_customer": {
+      "injected": 50,
+      "caught": 50
+    },
+    "zero_quantity": {
+      "injected": 39,
+      "caught": 39
+    },
+    "price_in_cents": {
+      "injected": 24,
+      "caught": 24
+    },
+    "unknown_product": {
+      "injected": 46,
+      "caught": 46
+    },
+    "swiss_date_format": {
+      "injected": 1606,
+      "parsed": 1606
+    },
+    "late_arrival": {
+      "injected": 90,
+      "merged_into_order_day": 89
+    }
+  },
+  "gold": {
+    "rows": {
+      "fact_sales": 10643,
+      "dim_product": 120,
+      "dim_channel": 5,
+      "dim_date": 30,
+      "dim_customer": 3234,
+      "kpi_daily_channel": 150,
+      "kpi_web_funnel": 30,
+      "kpi_category_month": 8,
+      "kpi_customers_daily": 30
+    },
+    "reconciliation": {
+      "silver_revenue_chf": 6744481.73,
+      "gold_revenue_chf": 6744481.73,
+      "difference_chf": -0.0
+    }
+  },
+  "idempotent_replay": {
+    "day": "2026-09-06",
+    "gold_unchanged": true
+  },
+  "rag": {
+    "n": 26,
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "answered_when_answerable": 1.0,
+    "refused_when_out_of_scope": 1.0
+  },
+  "rag_rows": [
+    {
+      "question": "How is revenue defined in the reports?",
+      "expected": "data_dictionary.md",
+      "top": "data_dictionary.md",
+      "score": 0.108,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "What does net_amount_chf contain for a returned order?",
+      "expected": "data_dictionary.md",
+      "top": "data_dictionary.md",
+      "score": 0.275,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "How is the average order value calculated?",
+      "expected": "data_dictionary.md",
+      "top": "data_dictionary.md",
+      "score": 0.52,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "Which channels exist and what is web_eu?",
+      "expected": "data_dictionary.md",
+      "top": "data_dictionary.md",
+      "score": 0.149,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "How is the conversion rate of the web funnel computed?",
+      "expected": "data_dictionary.md",
+      "top": "data_dictionary.md",
+      "score": 0.352,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "What happens to an order line that breaks a quality rule?",
+      "expected": "data_quality_policy.md",
+      "top": "data_quality_policy.md",
+      "score": 0.448,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "Why would a unit price be one hundred times too high?",
+      "expected": "data_quality_policy.md",
+      "top": "data_quality_policy.md",
+      "score": 0.316,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "How are duplicate lines resent by the ERP interface handled?",
+      "expected": "data_quality_policy.md",
+      "top": "data_quality_policy.md",
+      "score": 0.399,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "A line arrived in the next day's file, which day does it count for?",
+      "expected": "data_quality_policy.md",
+      "top": "data_quality_policy.md",
+      "score": 0.363,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "Who reviews the quarantine table?",
+      "expected": "data_quality_policy.md",
+      "top": "data_quality_policy.md",
+      "score": 0.274,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "Are customer emails stored in the Gold layer?",
+      "expected": "privacy_and_access.md",
+      "top": "privacy_and_access.md",
+      "score": 0.247,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "How long is Bronze data retained?",
+      "expected": "privacy_and_access.md",
+      "top": "privacy_and_access.md",
+      "score": 0.201,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "How is a customer deletion request handled under the nFADP?",
+      "expected": "privacy_and_access.md",
+      "top": "privacy_and_access.md",
+      "score": 0.317,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "Which role can read the Bronze schema in Unity Catalog?",
+      "expected": "privacy_and_access.md",
+      "top": "privacy_and_access.md",
+      "score": 0.359,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "Which exchange rate converts euros to francs?",
+      "expected": "currency_and_calendar.md",
+      "top": "currency_and_calendar.md",
+      "score": 0.383,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "Which time zone is used for dates?",
+      "expected": "currency_and_calendar.md",
+      "top": "currency_and_calendar.md",
+      "score": 0.251,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "In which format do store tills export timestamps?",
+      "expected": "currency_and_calendar.md",
+      "top": "currency_and_calendar.md",
+      "score": 0.357,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "When does the daily pipeline run?",
+      "expected": "pipeline_operations.md",
+      "top": "pipeline_operations.md",
+      "score": 0.231,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "Is it safe to rerun a day?",
+      "expected": "pipeline_operations.md",
+      "top": "pipeline_operations.md",
+      "score": 0.253,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "When does the reconciliation step fail the run?",
+      "expected": "pipeline_operations.md",
+      "top": "pipeline_operations.md",
+      "score": 0.332,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "What happens if a source file is missing?",
+      "expected": "pipeline_operations.md",
+      "top": "pipeline_operations.md",
+      "score": 0.339,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "What is the stock level of the Zurich store warehouse?",
+      "expected": null,
+      "top": "currency_and_calendar.md",
+      "score": 0.163,
+      "refused": true,
+      "hit@1": false,
+      "hit@3": false,
+      "correct": true
+    },
+    {
+      "question": "Who won the football match yesterday?",
+      "expected": null,
+      "top": "privacy_and_access.md",
+      "score": 0.0,
+      "refused": true,
+      "hit@1": false,
+      "hit@3": false,
+      "correct": true
+    },
+    {
+      "question": "What is the salary of the store manager in Geneva?",
+      "expected": null,
+      "top": "data_dictionary.md",
+      "score": 0.123,
+      "refused": true,
+      "hit@1": false,
+      "hit@3": false,
+      "correct": true
+    },
+    {
+      "question": "Give me the recipe for a fondue moitie-moitie.",
+      "expected": null,
+      "top": "privacy_and_access.md",
+      "score": 0.0,
+      "refused": true,
+      "hit@1": false,
+      "hit@3": false,
+      "correct": true
+    },
+    {
+      "question": "What is the marketing budget for 2027?",
+      "expected": null,
+      "top": "currency_and_calendar.md",
+      "score": 0.145,
+      "refused": true,
+      "hit@1": false,
+      "hit@3": false,
+      "correct": true
+    }
+  ],
+  "rag_heldout": {
+    "n": 15,
+    "hit@1": 0.9,
+    "hit@3": 1.0,
+    "answered_when_answerable": 1.0,
+    "refused_when_out_of_scope": 0.6
+  },
+  "rag_heldout_rows": [
+    {
+      "question": "Which table gives revenue per day and per channel?",
+      "expected": "data_dictionary.md",
+      "top": "data_dictionary.md",
+      "score": 0.224,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "What categories of products are sold?",
+      "expected": "data_dictionary.md",
+      "top": "data_dictionary.md",
+      "score": 0.305,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "Is the customer key reversible to an email address?",
+      "expected": "privacy_and_access.md",
+      "top": "data_dictionary.md",
+      "score": 0.293,
+      "refused": false,
+      "hit@1": false,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "Who can see the Power BI reports?",
+      "expected": "privacy_and_access.md",
+      "top": "privacy_and_access.md",
+      "score": 0.28,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "Which rule rejects a quantity of zero?",
+      "expected": "data_quality_policy.md",
+      "top": "data_quality_policy.md",
+      "score": 0.221,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "Are rejected lines corrected automatically?",
+      "expected": "data_quality_policy.md",
+      "top": "data_quality_policy.md",
+      "score": 0.263,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "Are daily market exchange rates applied to euro sales?",
+      "expected": "currency_and_calendar.md",
+      "top": "currency_and_calendar.md",
+      "score": 0.401,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "Which week numbering is used for weekly reports?",
+      "expected": "currency_and_calendar.md",
+      "top": "currency_and_calendar.md",
+      "score": 0.292,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "Which team owns the web event files?",
+      "expected": "pipeline_operations.md",
+      "top": "pipeline_operations.md",
+      "score": 0.393,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "How many tasks does the Databricks job have?",
+      "expected": "pipeline_operations.md",
+      "top": "pipeline_operations.md",
+      "score": 0.388,
+      "refused": false,
+      "hit@1": true,
+      "hit@3": true,
+      "correct": true
+    },
+    {
+      "question": "How many employees work in the Lausanne store?",
+      "expected": null,
+      "top": "data_dictionary.md",
+      "score": 0.123,
+      "refused": true,
+      "hit@1": false,
+      "hit@3": false,
+      "correct": true
+    },
+    {
+      "question": "What is the price of the Alpina Heritage 40 mm watch?",
+      "expected": null,
+      "top": "data_quality_policy.md",
+      "score": 0.158,
+      "refused": false,
+      "hit@1": false,
+      "hit@3": false,
+      "correct": false
+    },
+    {
+      "question": "Which cloud region hosts the Databricks workspace?",
+      "expected": null,
+      "top": "pipeline_operations.md",
+      "score": 0.199,
+      "refused": true,
+      "hit@1": false,
+      "hit@3": false,
+      "correct": true
+    },
+    {
+      "question": "When is the next Black Friday campaign?",
+      "expected": null,
+      "top": "privacy_and_access.md",
+      "score": 0.0,
+      "refused": true,
+      "hit@1": false,
+      "hit@3": false,
+      "correct": true
+    },
+    {
+      "question": "What is the average delivery time to Germany?",
+      "expected": null,
+      "top": "data_dictionary.md",
+      "score": 0.185,
+      "refused": false,
+      "hit@1": false,
+      "hit@3": false,
+      "correct": false
+    }
+  ]
+}

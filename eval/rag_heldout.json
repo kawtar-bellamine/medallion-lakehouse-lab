@@ -1,0 +1,17 @@
+[
+ {"question": "Which table gives revenue per day and per channel?", "source": "data_dictionary.md"},
+ {"question": "What categories of products are sold?", "source": "data_dictionary.md"},
+ {"question": "Is the customer key reversible to an email address?", "source": "privacy_and_access.md"},
+ {"question": "Who can see the Power BI reports?", "source": "privacy_and_access.md"},
+ {"question": "Which rule rejects a quantity of zero?", "source": "data_quality_policy.md"},
+ {"question": "Are rejected lines corrected automatically?", "source": "data_quality_policy.md"},
+ {"question": "Are daily market exchange rates applied to euro sales?", "source": "currency_and_calendar.md"},
+ {"question": "Which week numbering is used for weekly reports?", "source": "currency_and_calendar.md"},
+ {"question": "Which team owns the web event files?", "source": "pipeline_operations.md"},
+ {"question": "How many tasks does the Databricks job have?", "source": "pipeline_operations.md"},
+ {"question": "How many employees work in the Lausanne store?", "source": null},
+ {"question": "What is the price of the Alpina Heritage 40 mm watch?", "source": null},
+ {"question": "Which cloud region hosts the Databricks workspace?", "source": null},
+ {"question": "When is the next Black Friday campaign?", "source": null},
+ {"question": "What is the average delivery time to Germany?", "source": null}
+]

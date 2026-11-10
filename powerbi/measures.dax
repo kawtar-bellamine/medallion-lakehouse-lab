@@ -1,0 +1,42 @@
+// Power BI semantic model on the Gold export (powerbi/export/*.csv) or on the Databricks gold schema.
+// Relationships: fact_sales[date_key] -> dim_date[date_key], fact_sales[product_code] -> dim_product[product_code],
+//                fact_sales[channel] -> dim_channel[channel], fact_sales[customer_key] -> dim_customer[customer_key]
+// Mark dim_date as the date table (column dim_date[date]).
+
+Revenue CHF = SUM ( fact_sales[net_amount_chf] )
+
+Orders =
+CALCULATE ( DISTINCTCOUNT ( fact_sales[order_id] ), fact_sales[status] = "completed" )
+
+Average Order Value CHF = DIVIDE ( [Revenue CHF], [Orders] )
+
+Return Rate =
+DIVIDE (
+    CALCULATE ( DISTINCTCOUNT ( fact_sales[order_id] ), fact_sales[status] = "returned" ),
+    DISTINCTCOUNT ( fact_sales[order_id] )
+)
+
+Revenue Previous Week CHF =
+CALCULATE ( [Revenue CHF], DATEADD ( dim_date[date], -7, DAY ) )
+
+Revenue WoW % = DIVIDE ( [Revenue CHF] - [Revenue Previous Week CHF], [Revenue Previous Week CHF] )
+
+Revenue MTD CHF = TOTALMTD ( [Revenue CHF], dim_date[date] )
+
+Store Share % =
+DIVIDE (
+    CALCULATE ( [Revenue CHF], dim_channel[channel_type] = "Store" ),
+    CALCULATE ( [Revenue CHF], ALL ( dim_channel ) )
+)
+
+New Customers =
+CALCULATE (
+    DISTINCTCOUNT ( dim_customer[customer_key] ),
+    FILTER ( dim_customer, dim_customer[first_order_date] IN VALUES ( dim_date[date] ) )
+)
+
+Top Product Revenue Rank =
+RANKX ( ALL ( dim_product[product_code] ), [Revenue CHF], , DESC, DENSE )
+
+Web Conversion Rate =
+DIVIDE ( SUM ( kpi_web_funnel[web_orders] ), SUM ( kpi_web_funnel[page_view] ) )

@@ -1,0 +1,33 @@
+# Data contracts of the Silver layer: schema, rules and ownership. The pipeline enforces every rule;
+# rows that break a rule go to quarantine with the rule name, never silently into Gold.
+silver_order_lines:
+  owner: ERP team (order to cash)
+  grain: one row per order line (order_id, line_no)
+  pii: customer_email is hashed into customer_key; the raw address never leaves Bronze
+  columns:
+    order_id: {type: string, required: true}
+    line_no: {type: int, required: true}
+    order_ts: {type: timestamp, required: true, formats: ["yyyy-MM-dd HH:mm:ss", "dd.MM.yyyy HH:mm:ss"]}
+    order_date: {type: date, derived: order_ts}
+    channel: {type: string, allowed: [web_ch, web_eu, store_geneve, store_lausanne, store_zurich]}
+    customer_key: {type: string, required: true, derived: sha256(customer_id)}
+    product_code: {type: string, required: true, references: ref_products.product_code}
+    quantity: {type: int, rule: "> 0"}
+    unit_price_chf: {type: double, rule: "between 0.5 and 1.2 x list price", derived: "EUR x 0.94"}
+    status: {type: string, allowed: [completed, returned, cancelled]}
+  rules:
+    customer_present: customer_id is not empty
+    quantity_positive: quantity > 0
+    known_product: product_code exists in the catalogue
+    price_plausible: unit price between 50 % and 120 % of the list price
+    timestamp_parsed: order_ts parses in one of the accepted formats
+  deduplication: keep one row per (order_id, line_no)
+silver_web_events:
+  owner: Digital team
+  grain: one row per web event
+  columns:
+    ts: {type: timestamp, required: true}
+    session: {type: string, required: true}
+    event: {type: string, allowed: [page_view, product_view, add_to_cart, checkout]}
+    product_code: {type: string}
+    market: {type: string, allowed: [CH, EU]}
